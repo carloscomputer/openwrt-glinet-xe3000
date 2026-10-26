@@ -20,8 +20,8 @@ https://feed.example/custom/packages.adb"
 test_repo_list_defaults_to_the_public_feed() {
     local got
     got="$(feed_repo_list t1)"
-    assert_eq "$got" "https://vjt.github.io/x3000-feed/kmods/t1/packages.adb
-https://vjt.github.io/x3000-feed/custom/packages.adb"
+    assert_eq "$got" "https://carloscomputer.github.io/xe3000-feed/kmods/t1/packages.adb
+https://carloscomputer.github.io/xe3000-feed/custom/packages.adb"
 }
 
 test_list_entries_skips_comments_and_blanks() {

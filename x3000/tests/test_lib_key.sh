@@ -10,7 +10,7 @@ test_key_missing_private_says_how_to_restore() {
     fx_key "$TEST_TMP/k"
     rm "$TEST_TMP/k/private-key.pem"
     assert_fails "feed_check_key '$TEST_TMP/k'" "private-key.pem is missing"
-    assert_contains "$RUN_OUT" "gh repo clone vjt/x3000-feed-key"
+    assert_contains "$RUN_OUT" "gh repo clone carloscomputer/xe3000-feed-key"
 }
 
 test_key_missing_public() {

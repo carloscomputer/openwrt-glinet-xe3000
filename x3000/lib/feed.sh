@@ -16,11 +16,11 @@ FEED_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 # Overridable so the tests can point them at fixtures. prepare.sh bakes
 # FEED_BASE_URL into the image and release.sh checks the image against
 # its own value, so a stray override fails the artifact check.
-: "${FEED_BASE_URL:=https://vjt.github.io/x3000-feed}"
-: "${FEED_GIT_URL:=git@github.com:vjt/x3000-feed.git}"
-: "${FEED_GH_REPO:=vjt/x3000-feed}"
-: "${FEED_KEY_REPO:=vjt/x3000-feed-key}"
-: "${RELEASE_GH_REPO:=vjt/openwrt-glinet-x3000}"
+: "${FEED_BASE_URL:=https://carloscomputer.github.io/xe3000-feed}"
+: "${FEED_GIT_URL:=https://github.com/carloscomputer/xe3000-feed.git}"
+: "${FEED_GH_REPO:=carloscomputer/xe3000-feed}"
+: "${FEED_KEY_REPO:=carloscomputer/xe3000-feed-key}"
+: "${RELEASE_GH_REPO:=carloscomputer/openwrt-glinet-xe3000}"
 : "${FEED_HOST_BIN:=$FEED_ROOT/staging_dir/host/bin}"
 : "${FEED_TIMEOUT:=600}"
 : "${FEED_POLL_INTERVAL:=5}"
@@ -28,8 +28,8 @@ FEED_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 FEED_ARCH=aarch64_cortex-a53
 FEED_KEEP_TAGS=3
 FEED_KEEP_VERSIONS=2
-FEED_IMAGE_PREFIX=openwrt-mediatek-filogic-glinet_gl-x3000
-FEED_SYSUPGRADE_SUBDIR=sysupgrade-glinet_gl-x3000
+FEED_IMAGE_PREFIX=openwrt-mediatek-filogic-glinet_gl-xe3000
+FEED_SYSUPGRADE_SUBDIR=sysupgrade-glinet_gl-xe3000
 FEED_LIST_NAME=x3000feed.list
 
 feed_log() {
