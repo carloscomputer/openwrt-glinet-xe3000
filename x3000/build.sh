@@ -72,7 +72,7 @@ else
 fi
 
 echo
-echo "==> make -j$(nproc) BIN_DIR=$BIN_DIR ${MAKE_ARGS[*]}"
+echo "==> make -j1 BIN_DIR=$BIN_DIR ${MAKE_ARGS[*]}"
 make -j"$(nproc)" BIN_DIR="$BIN_DIR" "${MAKE_ARGS[@]}"
 
 if [[ -n "$RELEASE_TAG" ]]; then
