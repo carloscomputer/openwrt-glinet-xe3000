@@ -8,11 +8,3 @@
 # pull-in by transitive deps.
 # CONFIG_PACKAGE_telegraf is not set
 # CONFIG_PACKAGE_telegraf-full is not set
-# >>> xe3000 extra packages (setup.sh)
-CONFIG_PACKAGE_openvpn-openssl=y
-CONFIG_PACKAGE_luci-app-openvpn=y
-CONFIG_PACKAGE_kmod-wireguard=y
-CONFIG_PACKAGE_wireguard-tools=y
-CONFIG_PACKAGE_luci-proto-wireguard=y
-CONFIG_PACKAGE_tailscale=y
-# <<< xe3000 extra packages

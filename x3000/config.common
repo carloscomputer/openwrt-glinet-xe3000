@@ -154,3 +154,12 @@ CONFIG_FEED_custom=m
 # one kernel config per commit, so any build of this tree matches the
 # release built from the same commit.
 CONFIG_ALL_KMODS=y
+# >>> xe3000 extra packages (setup.sh)
+CONFIG_PACKAGE_openvpn-openssl=y
+CONFIG_PACKAGE_kmod-ovpn-backports=y
+CONFIG_PACKAGE_luci-app-openvpn=y
+CONFIG_PACKAGE_kmod-wireguard=y
+CONFIG_PACKAGE_wireguard-tools=y
+CONFIG_PACKAGE_luci-proto-wireguard=y
+CONFIG_PACKAGE_tailscale=y
+# <<< xe3000 extra packages
