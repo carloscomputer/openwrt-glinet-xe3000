@@ -13,7 +13,7 @@
 
 . /lib/functions.sh
 
-MODEM=/sys/devices/platform/soc/11280000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0
+MODEM=/sys/devices/platform/soc/11200000.usb/usb1/1-1/1-1.2
 
 uci -q get network.wwan >/dev/null || {
 	uci batch <<-EOF
