@@ -1,32 +1,64 @@
+<!-- xe3000-preface:begin -->
 ![OpenWrt logo](include/logo.png)
 
-# This is a fork of OpenWrt
+# GL.iNet GL-XE3000 (Puli AX) — OpenWrt 25.12 with a working 5G modem
 
-This branch (`openwrt-25.12`) carries the patches and build configuration
-needed to produce a working image for the **GL.iNet GL-X3000 (Spitz AX)**
-with its **Quectel RM520N-GL 5G modem** running on the mainline
-`mhi_pci_generic` + `mhi_wwan_mbim` stack, with ModemManager owning the
-data plane.
+This branch (`xe3000`) builds a vanilla **OpenWrt 25.12** image for the
+**GL.iNet GL-XE3000 (Puli AX)** with its **Quectel RM520N-GL 5G modem**, which
+ModemManager drives over USB (QMI, `qmi_wwan`) on the unit this was checked on. Kernel: **6.12.118**.
+(On the GL-X3000 vjt drives the same modem over PCIe/MHI; his patches for that path are in the
+tree but do not apply to the XE3000.)
 
-**Pre-built images** are on the
-[**releases page**](https://github.com/vjt/openwrt-glinet-x3000/releases)
-— grab the latest `jeeves-rN` and flash the
-`...-squashfs-sysupgrade.bin` (factory image is rejected by stock
-GL.iNet U-Boot; sysupgrade is the only path in).
+**This is not original work.** It is a 1:1 copy of
+[vjt/openwrt-glinet-x3000](https://github.com/vjt/openwrt-glinet-x3000)
+(tag `jeeves-r14`, already based on OpenWrt v25.12.6 plus newer branch commits), switched to the XE3000 device profile. The patch stack,
+the build kit and the 5G tools are his. What differs is listed in
+[`x3000/XE3000.md`](x3000/XE3000.md).
 
-If you'd rather build the image yourself — including a private variant
-with your own internal CA, custom apk feed, or extra packages baked
-in — **read [`x3000/README.md`](x3000/README.md)**. It documents what's
-different from upstream, why each patch exists, the build prerequisites,
-the public/private variant split, and the post-flash modem configuration.
-The whole build comes down to:
+## Build it yourself
 
 ```
-git clone https://github.com/vjt/openwrt-glinet-x3000.git
-cd openwrt-glinet-x3000
-./x3000/build.sh public          # or `private` with your own overlay
+git clone --single-branch --branch xe3000 https://github.com/carloscomputer/openwrt-glinet-xe3000.git
+cd openwrt-glinet-xe3000
+./x3000/build.sh public -- -j1 V=s
 ```
 
+The build prerequisites (packages, a Go toolchain for the bootstrap) are listed under
+"Prerequisites" in [`x3000/README.md`](x3000/README.md). The image ends up in
+`bin-x3000-public/openwrt-mediatek-filogic-glinet_gl-xe3000-squashfs-sysupgrade.bin`. A first build takes
+hours; `-j1` keeps it on one CPU, which also keeps errors readable.
+The signed apk feed (kernel modules and our packages) is published to the separate orphan branch `gh-pages` of this repository; `--single-branch` keeps those binaries out of your clone.
+**Why is the directory still called `x3000/`?** It is vjt's build kit, and it builds
+the XE3000 here. Keeping its name keeps his scripts, tests and documentation valid and
+lets his updates be applied as a plain rebase. `x3000/README.md` is his text for the
+GL-X3000; a note at its top explains what changes for the XE3000.
+
+## On top of vjt's image
+
+Packages added to both the public and the private image: `openvpn-openssl`, `kmod-ovpn-backports`, `luci-app-openvpn`, `kmod-wireguard`, `wireguard-tools`, `luci-proto-wireguard`, `tailscale`.
+Own package sources can be added through `x3000/xe3000-packages.txt` (see
+[`x3000/XE3000.md`](x3000/XE3000.md)); vjt's own mechanism for private overlays is
+described under "Baking your own packages" in `x3000/README.md`.
+
+## Flashing
+
+Use the `...-squashfs-sysupgrade.bin`. vjt reports that the stock GL.iNet U-Boot
+rejects the factory image on the X3000 and that sysupgrade is the way in; this fork
+assumes the same for the XE3000 and has not verified another route. Keep a copy of
+your original firmware and configuration, and note that flashing third-party firmware
+may void your warranty.
+
+## Pre-built images
+
+If there are any, they are on the
+[releases page](https://github.com/carloscomputer/openwrt-glinet-xe3000/releases) of this repository.
+
+## Credits and licence
+
+OpenWrt is licensed under GPL-2.0 (see below); the GL-X3000 work and the 5G tooling are
+[vjt](https://github.com/vjt)'s. This repository is not affiliated with GL.iNet or Quectel.
+
+<!-- xe3000-preface:end -->
 The rest of this README is upstream OpenWrt's, kept verbatim for
 reference.
 

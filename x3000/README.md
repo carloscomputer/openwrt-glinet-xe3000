@@ -1,5 +1,12 @@
 # GL.iNet GL-X3000 (Spitz AX) — vanilla OpenWrt build
 
+<!-- xe3000-note:begin -->
+> **GL-XE3000 fork.** This is vjt's build kit for the GL-X3000, used here
+> unchanged to build the **GL-XE3000**. Where the text below says X3000, the XE3000
+> build uses the same patches (both devices share one device tree include); image
+> file names read `...glinet_gl-xe3000...`. What differs: [`XE3000.md`](XE3000.md).
+<!-- xe3000-note:end -->
+
 A working OpenWrt 25.12 image for the GL.iNet GL-X3000 (Spitz AX),
 including the kernel and userspace pieces needed to drive the
 Quectel RM520N-GL 5G modem on the mainline `mhi_pci_generic` +
